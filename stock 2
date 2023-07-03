@@ -1,0 +1,14 @@
+int sol(vector<int> &prices,int ind,int n,int buy){
+    if(ind>=n) return 0;
+    int profit=0;
+    if(buy){
+        profit= max(-prices[ind]+sol(prices,ind+1,n,0), sol(prices,ind+1,n,1));
+    }else{
+        profit= max(prices[ind]+sol(prices,ind+1,n,1), sol(prices,ind+1,n,0));
+    }
+    return profit;
+}
+    int maxProfit(vector<int>& prices) {
+        int n= prices.size();
+        return sol(prices,0,n,1);
+    }
